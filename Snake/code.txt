@@ -1,0 +1,61 @@
+#include<iostream>
+#include"windows.h"
+
+using namespace std;
+//const int n = 10;
+
+void output(int mat[][M]) {
+	
+	Sleep(2);
+	system("cls");
+	for (int i = 0; i < M; i++) {
+		for (int j = 0; j < M; j++)
+			cout << mat[i][j] << " ";
+		cout << endl;
+	}
+}
+
+int main() {
+	int const n = 20;
+	int field[M][M];
+	for (int i = 0; i < M; i++)
+		for (int j = 0; j < M; j++)
+			field[i][j] = 0;
+
+		output(field);
+		int a = 1, b = 0;
+		field[a][b] = 1;
+		for (int i = 0; i < M; i++) {
+
+			for (int j = 0; j < M; j++)
+				if (field[a][b + 2] == 0 && b + 2 < M) {
+					field[a][b + 1] = 1;
+					b++;
+					//output(field);
+				}
+			for (int j = 0; j < M; j++) {
+				if (field[a + 2][b] == 0 && a + 2 < M) {
+					field[a + 1][b] = 1;
+					a++;
+					//output(field);
+				}
+			}
+			for (int j = 0; j < M; j++) {
+				if (field[a - 2][b] == 0 && a - 2 > -1) {
+					field[a - 1][b] = 1;
+					a--;
+					//output(field);
+				}
+			}
+			for (int j = 0; j < M; j++) {
+				if (field[a][b - 2] == 0 && b - 2 > -1) {
+					field[a][b - 1] = 1;
+					b--;
+					//output(field);
+				}
+			}
+		}
+		output(field);
+	return 0;
+}
+

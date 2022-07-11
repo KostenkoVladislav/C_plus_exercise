@@ -1,0 +1,86 @@
+#include<iostream>
+using namespace std;
+
+void bubbleSort(int* arr, int size)  // Сортировка пузырьком
+{
+	int tmp;
+
+	for (int i = 0; i < size - 1; ++i) // i - номер прохода
+	{
+		for (int j = 0; j < size - 1; ++j) // внутренний цикл прохода
+		{
+			if (arr[j + 1] < arr[j])
+			{
+				tmp = arr[j + 1];
+				arr[j + 1] = arr[j];
+				arr[j] = tmp;
+			}
+		}
+	}
+}
+
+int main() {
+	int size;
+	int step;
+	int steps = 0;
+
+	cout << "Enter the size of the array: ";
+	cin >> size;// size = 50;
+	step = size / 10;
+	int* mas = new int[size];
+
+	cout << endl << "Enter the elements: " << endl;
+	for (int i = 0; i < size; i++)
+		cin >> mas[i];
+
+	bubbleSort(mas, size);
+
+	cout << endl << "Enter the desired array element: ";
+	int desired;
+	cin >> desired;
+	cout << "Progress of work: ";
+
+	int n = 0;
+	while (n < size) {
+		if (mas[n] < desired) {
+
+			cout << mas[n] << "  ";
+			steps++;
+			if (n + step < size)
+				n = n + step;
+			else 
+				for (int i = n+1; i <size; i++) {
+					cout << mas[i] << "  ";
+					steps++;
+					if (mas[i] == desired) {
+						cout << endl << "Search is over. mas[" << i << "]=" << mas[i] << endl << endl << endl;
+						n = size + 1;
+						break;
+					}
+
+				}
+		}
+		else {
+			for (int i = n; i > n - step; i--) {
+				cout << mas[i] << "  ";
+				steps++;
+				if (mas[i] == desired) {
+					cout << endl << "Search is over. mas[" << i << "]=" << mas[i] << endl << endl << endl;
+					n = size + 1;
+					break;
+				}
+
+			}
+				
+
+		}
+	}
+	cout << endl << "Size of array: " << size << endl << "Number of steps:" << steps << endl << "Step:" << step << endl;
+	float size1, steps1;
+	steps1 = steps;
+	size1 = size;
+	float nn = steps1 / size1;
+	cout << "steps/size=" << nn << endl;
+
+	return 0;
+}
